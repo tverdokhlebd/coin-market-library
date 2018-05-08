@@ -1,8 +1,8 @@
 package com.tverdokhlebd.coin.market.coinmarketcap;
 
 import static com.tverdokhlebd.coin.market.CoinMarketType.COIN_MARKET_CAP;
-import static com.tverdokhlebd.mining.coin.CoinType.BCH;
-import static com.tverdokhlebd.mining.coin.CoinType.BTC;
+import static com.tverdokhlebd.mining.commons.coin.CoinType.BCH;
+import static com.tverdokhlebd.mining.commons.coin.CoinType.BTC;
 
 import java.math.BigDecimal;
 
@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.tverdokhlebd.coin.market.Utils;
 import com.tverdokhlebd.coin.market.requestor.CoinMarketRequestorException;
-import com.tverdokhlebd.mining.utils.HttpClientUtils;
+import com.tverdokhlebd.mining.commons.utils.HttpClientUtils;
 
 import okhttp3.OkHttpClient;
 

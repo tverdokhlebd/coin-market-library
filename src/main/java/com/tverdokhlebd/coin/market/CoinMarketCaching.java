@@ -2,7 +2,7 @@ package com.tverdokhlebd.coin.market;
 
 import java.util.Date;
 
-import com.tverdokhlebd.mining.coin.CoinType;
+import com.tverdokhlebd.mining.commons.coin.CoinType;
 
 /**
  * Interface for coin market caching.

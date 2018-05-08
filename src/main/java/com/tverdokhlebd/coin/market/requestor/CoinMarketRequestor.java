@@ -1,7 +1,7 @@
 package com.tverdokhlebd.coin.market.requestor;
 
 import com.tverdokhlebd.coin.market.CoinMarket;
-import com.tverdokhlebd.mining.coin.CoinType;
+import com.tverdokhlebd.mining.commons.coin.CoinType;
 
 /**
  * Interface for requesting coin market.

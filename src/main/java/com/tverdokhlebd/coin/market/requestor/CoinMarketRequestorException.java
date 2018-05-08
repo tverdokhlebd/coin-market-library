@@ -1,7 +1,7 @@
 package com.tverdokhlebd.coin.market.requestor;
 
-import com.tverdokhlebd.mining.http.ErrorCode;
-import com.tverdokhlebd.mining.http.RequestException;
+import com.tverdokhlebd.mining.commons.http.ErrorCode;
+import com.tverdokhlebd.mining.commons.http.RequestException;
 
 /**
  * Exception for working with coin market requestor.

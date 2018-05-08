@@ -1,13 +1,13 @@
 package com.tverdokhlebd.coin.market.coinmarketcap;
 
 import static com.tverdokhlebd.coin.market.CoinMarketType.COIN_MARKET_CAP;
-import static com.tverdokhlebd.mining.coin.CoinType.BTC;
-import static com.tverdokhlebd.mining.coin.CoinType.ETC;
-import static com.tverdokhlebd.mining.coin.CoinType.ETH;
-import static com.tverdokhlebd.mining.coin.CoinType.XMR;
-import static com.tverdokhlebd.mining.coin.CoinType.ZEC;
-import static com.tverdokhlebd.mining.http.ErrorCode.API_ERROR;
-import static com.tverdokhlebd.mining.http.ErrorCode.PARSE_ERROR;
+import static com.tverdokhlebd.mining.commons.coin.CoinType.BTC;
+import static com.tverdokhlebd.mining.commons.coin.CoinType.ETC;
+import static com.tverdokhlebd.mining.commons.coin.CoinType.ETH;
+import static com.tverdokhlebd.mining.commons.coin.CoinType.XMR;
+import static com.tverdokhlebd.mining.commons.coin.CoinType.ZEC;
+import static com.tverdokhlebd.mining.commons.http.ErrorCode.API_ERROR;
+import static com.tverdokhlebd.mining.commons.http.ErrorCode.PARSE_ERROR;
 
 import java.math.BigDecimal;
 import java.util.AbstractMap.SimpleEntry;
@@ -25,9 +25,9 @@ import com.tverdokhlebd.coin.market.CoinMarket;
 import com.tverdokhlebd.coin.market.CoinMarket.Builder;
 import com.tverdokhlebd.coin.market.CoinMarketType;
 import com.tverdokhlebd.coin.market.requestor.CoinMarketBaseRequestor;
-import com.tverdokhlebd.mining.coin.CoinType;
-import com.tverdokhlebd.mining.http.RequestException;
-import com.tverdokhlebd.mining.utils.TimeUtils;
+import com.tverdokhlebd.mining.commons.coin.CoinType;
+import com.tverdokhlebd.mining.commons.http.RequestException;
+import com.tverdokhlebd.mining.commons.utils.TimeUtils;
 
 import okhttp3.OkHttpClient;
 

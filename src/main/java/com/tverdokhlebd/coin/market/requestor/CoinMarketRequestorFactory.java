@@ -2,7 +2,7 @@ package com.tverdokhlebd.coin.market.requestor;
 
 import com.tverdokhlebd.coin.market.CoinMarketType;
 import com.tverdokhlebd.coin.market.coinmarketcap.CoinMarketCapRequestor;
-import com.tverdokhlebd.mining.http.HttpClientFactory;
+import com.tverdokhlebd.mining.commons.http.HttpClientFactory;
 
 import okhttp3.OkHttpClient;
 

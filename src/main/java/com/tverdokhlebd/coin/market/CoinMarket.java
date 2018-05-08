@@ -2,7 +2,7 @@ package com.tverdokhlebd.coin.market;
 
 import java.math.BigDecimal;
 
-import com.tverdokhlebd.mining.coin.CoinType;
+import com.tverdokhlebd.mining.commons.coin.CoinType;
 
 /**
  * Market information about coin (rank, price, market cap and etc.).
