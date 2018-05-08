@@ -1,6 +1,6 @@
-package com.tverdokhlebd.market.coinmarketcap;
+package com.tverdokhlebd.coin.market.coinmarketcap;
 
-import static com.tverdokhlebd.market.MarketType.COIN_MARKET_CAP;
+import static com.tverdokhlebd.coin.market.CoinMarketType.COIN_MARKET_CAP;
 import static com.tverdokhlebd.mining.coin.CoinType.BTC;
 import static com.tverdokhlebd.mining.coin.CoinType.ETC;
 import static com.tverdokhlebd.mining.coin.CoinType.ETH;
@@ -21,10 +21,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.tverdokhlebd.market.CoinMarket;
-import com.tverdokhlebd.market.CoinMarket.Builder;
-import com.tverdokhlebd.market.MarketType;
-import com.tverdokhlebd.market.requestor.MarketBaseRequestor;
+import com.tverdokhlebd.coin.market.CoinMarket;
+import com.tverdokhlebd.coin.market.CoinMarket.Builder;
+import com.tverdokhlebd.coin.market.CoinMarketType;
+import com.tverdokhlebd.coin.market.requestor.CoinMarketBaseRequestor;
 import com.tverdokhlebd.mining.coin.CoinType;
 import com.tverdokhlebd.mining.http.RequestException;
 import com.tverdokhlebd.mining.utils.TimeUtils;
@@ -32,12 +32,12 @@ import com.tverdokhlebd.mining.utils.TimeUtils;
 import okhttp3.OkHttpClient;
 
 /**
- * CoinMarketCap market requestor.
+ * CoinMarketCap coin market requestor.
  *
  * @author Dmitry Tverdokhleb
  *
  */
-public class CoinMarketCapMarketRequestor extends MarketBaseRequestor {
+public class CoinMarketCapRequestor extends CoinMarketBaseRequestor {
 
     /** Endpoints update. */
     private final int endpointsUpdate;
@@ -85,7 +85,7 @@ public class CoinMarketCapMarketRequestor extends MarketBaseRequestor {
      * @param httpClient HTTP client
      * @param endpointsUpdate endpoints update
      */
-    public CoinMarketCapMarketRequestor(OkHttpClient httpClient, int endpointsUpdate) {
+    public CoinMarketCapRequestor(OkHttpClient httpClient, int endpointsUpdate) {
         super(httpClient);
         this.endpointsUpdate = endpointsUpdate;
     }
@@ -108,7 +108,7 @@ public class CoinMarketCapMarketRequestor extends MarketBaseRequestor {
     }
 
     @Override
-    protected MarketType geMarketType() {
+    protected CoinMarketType geMarketType() {
         return COIN_MARKET_CAP;
     }
 

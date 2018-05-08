@@ -1,6 +1,6 @@
-package com.tverdokhlebd.market.coinmarketcap;
+package com.tverdokhlebd.coin.market.coinmarketcap;
 
-import static com.tverdokhlebd.market.MarketType.COIN_MARKET_CAP;
+import static com.tverdokhlebd.coin.market.CoinMarketType.COIN_MARKET_CAP;
 import static com.tverdokhlebd.mining.coin.CoinType.BCH;
 import static com.tverdokhlebd.mining.coin.CoinType.BTC;
 
@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import com.tverdokhlebd.market.Utils;
-import com.tverdokhlebd.market.requestor.MarketRequestorException;
+import com.tverdokhlebd.coin.market.Utils;
+import com.tverdokhlebd.coin.market.requestor.CoinMarketRequestorException;
 import com.tverdokhlebd.mining.utils.HttpClientUtils;
 
 import okhttp3.OkHttpClient;
@@ -21,10 +21,10 @@ import okhttp3.OkHttpClient;
  * @author Dmitry Tverdokhleb
  *
  */
-public class CoinMarketCapMarketRequestorTest {
+public class CoinMarketCapRequestorTest {
 
     @Test
-    public void testCoinMarket() throws MarketRequestorException {
+    public void testCoinMarket() throws CoinMarketRequestorException {
         JSONObject response = new JSONObject("{  \n" +
                 "  \"data\":{  \n" +
                 "    \"id\":1,\n" +
@@ -57,8 +57,8 @@ public class CoinMarketCapMarketRequestorTest {
         Utils.testCoinMarket(httpClient, COIN_MARKET_CAP, BTC, expectedPriceUsd);
     }
 
-    @Test(expected = MarketRequestorException.class)
-    public void testApiError() throws MarketRequestorException {
+    @Test(expected = CoinMarketRequestorException.class)
+    public void testApiError() throws CoinMarketRequestorException {
         JSONObject response = new JSONObject("{  \n" +
                 "  \"data\":null,\n" +
                 "  \"metadata\":{  \n" +
@@ -70,18 +70,18 @@ public class CoinMarketCapMarketRequestorTest {
         Utils.testApiError(httpClient, COIN_MARKET_CAP, BTC, "id not found");
     }
 
-    @Test(expected = MarketRequestorException.class)
-    public void testInternalServerError() throws MarketRequestorException {
+    @Test(expected = CoinMarketRequestorException.class)
+    public void testInternalServerError() throws CoinMarketRequestorException {
         Utils.testInternalServerError(COIN_MARKET_CAP, BTC);
     }
 
-    @Test(expected = MarketRequestorException.class)
-    public void testEmptyResponse() throws MarketRequestorException {
+    @Test(expected = CoinMarketRequestorException.class)
+    public void testEmptyResponse() throws CoinMarketRequestorException {
         Utils.testEmptyResponse(COIN_MARKET_CAP, BTC);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testUnsupportedCoin() throws MarketRequestorException {
+    public void testUnsupportedCoin() throws CoinMarketRequestorException {
         Utils.testUnsupportedCoin(COIN_MARKET_CAP, BCH);
     }
 

@@ -1,4 +1,4 @@
-package com.tverdokhlebd.market;
+package com.tverdokhlebd.coin.market;
 
 import java.math.BigDecimal;
 
@@ -68,18 +68,22 @@ public class CoinMarket {
          * Sets coin.
          *
          * @param coin new coin
+         * @return builder
          */
-        public void setCoin(CoinType coin) {
+        public Builder setCoin(CoinType coin) {
             this.coin = coin;
+            return this;
         }
 
         /**
          * Sets price.
          *
          * @param price new price
+         * @return builder
          */
-        public void setPrice(BigDecimal price) {
+        public Builder setPrice(BigDecimal price) {
             this.price = price;
+            return this;
         }
 
         /**

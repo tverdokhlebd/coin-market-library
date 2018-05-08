@@ -1,16 +1,16 @@
-package com.tverdokhlebd.market;
+package com.tverdokhlebd.coin.market;
 
 import java.util.Date;
 
 import com.tverdokhlebd.mining.coin.CoinType;
 
 /**
- * Interface for market caching.
+ * Interface for coin market caching.
  *
  * @author Dmitry Tverdokhleb
  *
  */
-public interface MarketCaching {
+public interface CoinMarketCaching {
 
     /**
      * Gets cached next update.

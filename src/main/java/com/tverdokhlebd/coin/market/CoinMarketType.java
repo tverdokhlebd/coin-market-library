@@ -1,4 +1,4 @@
-package com.tverdokhlebd.market;
+package com.tverdokhlebd.coin.market;
 
 import static com.tverdokhlebd.mining.coin.CoinType.BTC;
 import static com.tverdokhlebd.mining.coin.CoinType.ETC;
@@ -12,12 +12,12 @@ import java.util.List;
 import com.tverdokhlebd.mining.coin.CoinType;
 
 /**
- * Enumerations of market types.
+ * Enumerations of coin market types.
  *
  * @author Dmitry Tverdokhleb
  *
  */
-public enum MarketType {
+public enum CoinMarketType {
 
     COIN_MARKET_CAP(Arrays.asList(BTC, ETH, ETC, XMR, ZEC));
 
@@ -29,7 +29,7 @@ public enum MarketType {
      *
      * @param coinTypeList supported list of coin types
      */
-    private MarketType(List<CoinType> coinTypeList) {
+    private CoinMarketType(List<CoinType> coinTypeList) {
         this.coinTypeList = coinTypeList;
     }
 

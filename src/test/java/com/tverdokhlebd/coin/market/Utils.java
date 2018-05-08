@@ -1,4 +1,4 @@
-package com.tverdokhlebd.market;
+package com.tverdokhlebd.coin.market;
 
 import static com.tverdokhlebd.mining.http.ErrorCode.API_ERROR;
 import static com.tverdokhlebd.mining.http.ErrorCode.HTTP_ERROR;
@@ -9,9 +9,11 @@ import java.math.BigDecimal;
 
 import org.json.JSONObject;
 
-import com.tverdokhlebd.market.requestor.MarketRequestor;
-import com.tverdokhlebd.market.requestor.MarketRequestorException;
-import com.tverdokhlebd.market.requestor.MarketRequestorFactory;
+import com.tverdokhlebd.coin.market.CoinMarket;
+import com.tverdokhlebd.coin.market.CoinMarketType;
+import com.tverdokhlebd.coin.market.requestor.CoinMarketRequestor;
+import com.tverdokhlebd.coin.market.requestor.CoinMarketRequestorException;
+import com.tverdokhlebd.coin.market.requestor.CoinMarketRequestorFactory;
 import com.tverdokhlebd.mining.coin.CoinType;
 import com.tverdokhlebd.mining.utils.HttpClientUtils;
 
@@ -32,11 +34,11 @@ public class Utils {
      * @param marketType type of market
      * @param coinType type of coin
      * @param expectedPriceUsd expected price in USD
-     * @throws MarketRequestorException if there is any error in market requesting
+     * @throws CoinMarketRequestorException if there is any error in market requesting
      */
-    public static void testCoinMarket(OkHttpClient httpClient, MarketType marketType, CoinType coinType, BigDecimal expectedPriceUsd)
-            throws MarketRequestorException {
-        MarketRequestor marketRequestor = MarketRequestorFactory.create(marketType, httpClient, 0);
+    public static void testCoinMarket(OkHttpClient httpClient, CoinMarketType marketType, CoinType coinType, BigDecimal expectedPriceUsd)
+            throws CoinMarketRequestorException {
+        CoinMarketRequestor marketRequestor = CoinMarketRequestorFactory.create(marketType, httpClient, 0);
         CoinMarket coinMarket = marketRequestor.requestCoinMarket(coinType);
         assertEquals(coinType, coinMarket.getCoin());
         assertEquals(expectedPriceUsd, coinMarket.getPrice());
@@ -49,14 +51,14 @@ public class Utils {
      * @param marketType type of market
      * @param coinType type of coin
      * @param expectedErrorMessage expected error message
-     * @throws MarketRequestorException if there is any error in market requesting
+     * @throws CoinMarketRequestorException if there is any error in market requesting
      */
-    public static void testApiError(OkHttpClient httpClient, MarketType marketType, CoinType coinType, String expectedErrorMessage)
-            throws MarketRequestorException {
-        MarketRequestor marketRequestor = MarketRequestorFactory.create(marketType, httpClient, 0);
+    public static void testApiError(OkHttpClient httpClient, CoinMarketType marketType, CoinType coinType, String expectedErrorMessage)
+            throws CoinMarketRequestorException {
+        CoinMarketRequestor marketRequestor = CoinMarketRequestorFactory.create(marketType, httpClient, 0);
         try {
             marketRequestor.requestCoinMarket(coinType);
-        } catch (MarketRequestorException e) {
+        } catch (CoinMarketRequestorException e) {
             assertEquals(API_ERROR, e.getErrorCode());
             assertEquals(expectedErrorMessage, e.getMessage());
             throw e;
@@ -68,14 +70,14 @@ public class Utils {
      *
      * @param marketType type of market
      * @param coinType type of coin
-     * @throws MarketRequestorException if there is any error in market requesting
+     * @throws CoinMarketRequestorException if there is any error in market requesting
      */
-    public static void testInternalServerError(MarketType marketType, CoinType coinType) throws MarketRequestorException {
+    public static void testInternalServerError(CoinMarketType marketType, CoinType coinType) throws CoinMarketRequestorException {
         OkHttpClient httpClient = HttpClientUtils.createHttpClient(new JSONObject().toString(), 500);
-        MarketRequestor marketRequestor = MarketRequestorFactory.create(marketType, httpClient, 0);
+        CoinMarketRequestor marketRequestor = CoinMarketRequestorFactory.create(marketType, httpClient, 0);
         try {
             marketRequestor.requestCoinMarket(coinType);
-        } catch (MarketRequestorException e) {
+        } catch (CoinMarketRequestorException e) {
             assertEquals(HTTP_ERROR, e.getErrorCode());
             throw e;
         }
@@ -86,14 +88,14 @@ public class Utils {
      *
      * @param marketType type of market
      * @param coinType type of coin
-     * @throws MarketRequestorException if there is any error in market requesting
+     * @throws CoinMarketRequestorException if there is any error in market requesting
      */
-    public static void testEmptyResponse(MarketType marketType, CoinType coinType) throws MarketRequestorException {
+    public static void testEmptyResponse(CoinMarketType marketType, CoinType coinType) throws CoinMarketRequestorException {
         OkHttpClient httpClient = HttpClientUtils.createHttpClient(new JSONObject().toString(), 200);
-        MarketRequestor marketRequestor = MarketRequestorFactory.create(marketType, httpClient, 0);
+        CoinMarketRequestor marketRequestor = CoinMarketRequestorFactory.create(marketType, httpClient, 0);
         try {
             marketRequestor.requestCoinMarket(coinType);
-        } catch (MarketRequestorException e) {
+        } catch (CoinMarketRequestorException e) {
             assertEquals(PARSE_ERROR, e.getErrorCode());
             throw e;
         }
@@ -104,11 +106,11 @@ public class Utils {
      *
      * @param marketType type of market
      * @param coinType type of coin
-     * @throws MarketRequestorException if there is any error in market requesting
+     * @throws CoinMarketRequestorException if there is any error in market requesting
      */
-    public static void testUnsupportedCoin(MarketType marketType, CoinType coinType) throws MarketRequestorException {
+    public static void testUnsupportedCoin(CoinMarketType marketType, CoinType coinType) throws CoinMarketRequestorException {
         OkHttpClient httpClient = HttpClientUtils.createHttpClient(new JSONObject().toString(), 200);
-        MarketRequestor marketRequestor = MarketRequestorFactory.create(marketType, httpClient, 0);
+        CoinMarketRequestor marketRequestor = CoinMarketRequestorFactory.create(marketType, httpClient, 0);
         try {
             marketRequestor.requestCoinMarket(coinType);
         } catch (IllegalArgumentException e) {

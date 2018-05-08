@@ -1,12 +1,12 @@
-package com.tverdokhlebd.market.requestor;
+package com.tverdokhlebd.coin.market.requestor;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Date;
 import java.util.List;
 
-import com.tverdokhlebd.market.CoinMarket;
-import com.tverdokhlebd.market.MarketCaching;
-import com.tverdokhlebd.market.MarketType;
+import com.tverdokhlebd.coin.market.CoinMarket;
+import com.tverdokhlebd.coin.market.CoinMarketCaching;
+import com.tverdokhlebd.coin.market.CoinMarketType;
 import com.tverdokhlebd.mining.coin.CoinType;
 import com.tverdokhlebd.mining.http.BaseRequestor;
 import com.tverdokhlebd.mining.http.RequestException;
@@ -19,19 +19,19 @@ import okhttp3.OkHttpClient;
  * @author Dmitry Tverdokhleb
  *
  */
-public abstract class MarketBaseRequestor extends BaseRequestor<CoinMarket.Builder> implements MarketRequestor, MarketCaching {
+public abstract class CoinMarketBaseRequestor extends BaseRequestor<CoinMarket.Builder> implements CoinMarketRequestor, CoinMarketCaching {
 
     /**
      * Creates instance.
      *
      * @param httpClient HTTP client
      */
-    protected MarketBaseRequestor(OkHttpClient httpClient) {
+    protected CoinMarketBaseRequestor(OkHttpClient httpClient) {
         super(httpClient);
     }
 
     @Override
-    public CoinMarket requestCoinMarket(CoinType coinType) throws MarketRequestorException {
+    public CoinMarket requestCoinMarket(CoinType coinType) throws CoinMarketRequestorException {
         if (geMarketType().getCoinTypeList().indexOf(coinType) == -1) {
             throw new IllegalArgumentException(coinType.name() + " is not supported");
         }
@@ -50,16 +50,16 @@ public abstract class MarketBaseRequestor extends BaseRequestor<CoinMarket.Build
             }
             return getCachedCoinMarket(coinType);
         } catch (RequestException e) {
-            throw new MarketRequestorException(e);
+            throw new CoinMarketRequestorException(e);
         }
     }
 
     /**
-     * Gets market type.
+     * Gets coin market type.
      *
-     * @return market type
+     * @return coin market type
      */
-    protected abstract MarketType geMarketType();
+    protected abstract CoinMarketType geMarketType();
 
     /**
      * Gets list of urls.
