@@ -31,7 +31,7 @@ public abstract class MarketBaseRequestor extends BaseRequestor<CoinMarket.Build
     }
 
     @Override
-    public CoinMarket requestCoin(CoinType coinType) throws MarketRequestorException {
+    public CoinMarket requestCoinMarket(CoinType coinType) throws MarketRequestorException {
         if (geMarketType().getCoinTypeList().indexOf(coinType) == -1) {
             throw new IllegalArgumentException(coinType.name() + " is not supported");
         }

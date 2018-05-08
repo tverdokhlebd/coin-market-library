@@ -18,6 +18,6 @@ public interface MarketRequestor {
      * @return coin market
      * @throws MarketRequestorException if there is any error in market requesting
      */
-    CoinMarket requestCoin(CoinType coinType) throws MarketRequestorException;
+    CoinMarket requestCoinMarket(CoinType coinType) throws MarketRequestorException;
 
 }
